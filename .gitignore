@@ -1,0 +1,55 @@
+# Pipenv and Python Virtual Environments
+Pipfile.lock
+.env
+*.venv/
+venv/
+virtualenv/
+.env.*
+
+# Python Bytecode and Temporary Files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Django Specific
+*.log
+*.pot
+*.pyc
+*.pyo
+*.pyd
+*.db
+*.sqlite3
+migrations/
+
+# Static and Media Files (if applicable)
+staticfiles/
+media/
+
+# IDE and Editor Files
+.idea/
+.vscode/
+*.sublime-workspace
+*.sublime-project
+
+# macOS
+.DS_Store
+
+# Build and Distribution
+dist/
+build/
+*.egg-info/
+*.egg
+
+# Coverage and Testing
+htmlcov/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
