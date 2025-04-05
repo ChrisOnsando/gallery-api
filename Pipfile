@@ -11,6 +11,8 @@ python-decouple = "*"
 django = "*"
 dj-database-url = "*"
 psycopg2 = "*"
+django-cors-headers = "*"
+whitenoise = "*"
 
 [dev-packages]
 
