@@ -9,6 +9,7 @@ from rest_framework.validators import UniqueValidator
 from rest_framework_simplejwt.tokens import RefreshToken, TokenError
 
 from app.user.models import Profile
+from app.photos.models import Photo
 from app.user.token import account_activation_token
 from app.user.utils import create_email_data, generate_token, send_email
 from app.user.validators import (
@@ -17,6 +18,7 @@ from app.user.validators import (
     validate_password_symbol,
     validate_password_uppercase,
 )
+from app.photos.serializers import AlbumSerializer, PhotoSerializer
 
 User = get_user_model()
 
@@ -127,10 +129,16 @@ class ProfileSerializer(serializers.ModelSerializer):
     username = serializers.CharField(read_only=True, source="user.username")
     bio = serializers.CharField(allow_blank=True, required=False)
     image = serializers.ImageField(use_url=True, required=False)
+    albums = AlbumSerializer(many=True, read_only=True, source="user.albums")  
+    photos = serializers.SerializerMethodField() 
 
     class Meta:
         model = Profile
-        fields = ("username", "bio", "image")
+        fields = ("username", "bio", "image", "albums", "photos")
+
+    def get_photos(self, obj):
+        photos = Photo.objects.filter(album__user=obj.user)
+        return PhotoSerializer(photos, many=True, context=self.context).data    
 
     def update(self, instance: Any, validated_data: Any) -> Any:
         instance.bio = validated_data.get("bio", instance.bio)
