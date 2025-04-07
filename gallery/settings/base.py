@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     #App imports
     'corsheaders',
     'app.user',
+    'app.photos',
 ]
 
 MIDDLEWARE = [
